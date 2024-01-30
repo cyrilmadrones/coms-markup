@@ -1,0 +1,219 @@
+$xs : '(min-width: 360px)';
+$sm : '(min-width: 480px)';
+$md : '(min-width: 768px)';
+$md-max : '(max-width: 767px)';
+$lg : '(min-width: 992px)';
+$lg-max : '(max-width: 992px)';
+$xl : '(min-width: 1400px)';
+
+$enable-negative-margins: true;
+
+@mixin breakpoint($media) {
+    @media only screen and #{$media} {
+        @content;
+    }
+}
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 37.5em) { @content };    //600px
+    }
+    @if $breakpoint == tab-port {
+        @media only screen and (max-width: 56.25em) { @content };     //900px
+    }
+    @if $breakpoint == tab-land {
+        @media only screen and (max-width: 75em) { @content };    //1200px
+    }
+    @if $breakpoint == big-desktop {
+        @media only screen and (min-width: 112.5em) { @content };    //1800
+    }
+}
+
+@mixin border-radius($radius) {
+    border-radius: $radius;
+    -o-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius; 
+}
+
+@mixin box-shadow($shadow) {
+    box-shadow: $shadow;
+    -o-box-shadow: $shadow;
+    -ms-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    -webkit-box-shadow: $shadow;
+}
+
+@mixin text-shadow($shadow) {
+    text-shadow: $shadow;
+    -o-text-shadow: $shadow;
+    -ms-text-shadow: $shadow;
+    -moz-text-shadow: $shadow;
+    -webkit-text-shadow: $shadow;
+}
+
+@mixin rotate($degree) {
+    -webkit-transform: rotate($degree);
+    -moz-transform: rotate($degree);
+    -ms-transform: rotate($degree);
+    -o-transform: rotate($degree);
+    transform: rotate($degree);
+}
+
+@mixin clearfix {
+    &::after {
+      display: block;
+      content: "";
+      clear: both;
+    }
+}
+
+@mixin after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+@mixin transition {
+    webkit-transition: all 300ms ease !important;
+      -moz-transition: all 300ms ease !important;
+       -ms-transition: all 300ms ease !important;
+        -o-transition: all 300ms ease !important;
+           transition: all 300ms ease !important;
+}
+
+@mixin linear-gradient($direction, $color-stops) {
+    background: nth(nth($color-stops, 1), 1);
+    background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+    background: linear-gradient($direction, $color-stops);
+}
+
+@mixin background-image($url, $repeat, $size, $position) {
+    background-image: url($url);
+    background-repeat: $repeat;
+    background-size: $size;
+    background-position: $position;
+}
+
+@mixin bg-size($value) {
+    background-size: $value;
+    -o-background-size: $value;
+    -ms-background-size: $value;
+    -moz-background-size: $value;
+    -webkit-background-size: $value;
+}
+
+@mixin background-opacity($color, $opacity) {
+    background: $color; /* The Fallback */
+    background: rgba($color, $opacity);
+}
+
+@mixin input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+
+@mixin rotate($angle) {
+  -moz-transform: rotate($angle);
+  -ms-transform: rotate($angle);
+  -webkit-transform: rotate($angle);
+  transform: rotate($angle);
+}
+
+@mixin arrow($arrowSize: 20px, $arrowBorderSize: 3px, $arrowBarWidth: 2px, $arrowBarHeight: 25px) {
+  display: inline-block;
+  height: $arrowSize;
+  position: relative;
+  width: $arrowSize;
+
+  &::after {
+    border-bottom-style: solid;
+    border-bottom-width: $arrowBorderSize;
+    border-right-style: solid;
+    border-right-width: $arrowBorderSize;
+    content: '';
+    display: inline-block;
+    height: $arrowSize;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: $arrowSize;
+  }
+
+  // Triangle shape state
+  &.is-triangle::after {
+    border-style: solid;
+    border-width: 0 0 $arrowSize $arrowSize;
+    height: 0;
+    width: 0;
+  }
+  
+  // Check shape state
+  &.is-check::after {
+    width: $arrowSize / 2;
+  }
+
+  // Arrow Bar
+  &.arrow-bar::before {
+    bottom: 1px;
+    content: '';
+    height: $arrowBarHeight;
+    position: absolute;
+    right: 0;
+    transform-origin: bottom;
+    width: $arrowBarWidth;
+    @include rotate(-45deg);
+  }
+
+  // States
+  &.is-top {
+    @include rotate(225deg);
+  }
+
+  &.is-right {
+    @include rotate(315deg);
+  }
+
+  &.is-bottom {
+    @include rotate(45deg);
+  }
+
+  &.is-left {
+    @include rotate(135deg);
+  }
+}
+
+@mixin arrowColor($color) {
+  &,
+  .arrow {
+    &::after {
+      border-color: $color;
+    }
+
+    &.is-triangle::after {
+      border-color: transparent;
+      border-bottom-color: $color;
+    }
+
+    &::before {
+      background-color: $color;
+    }
+  }
+}
+
+.arrow {
+  margin: 25px;
+  @include arrow(30px, 5px, 5px, 20px);
+  @include arrowColor(#fff);
+
+  &:hover,&:focus,&:active {
+    @include arrowColor(#d81c5c);
+  }
+}

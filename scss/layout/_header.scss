@@ -1,0 +1,10 @@
+#header {
+    padding: 20px 0;
+    border-bottom: $gray 1px solid;
+
+    .search,
+    .navbar-toggler {
+        font-size: 36px;
+        cursor: pointer;
+    }
+}

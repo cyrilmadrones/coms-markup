@@ -1,0 +1,20 @@
+.radius {
+  @include border-radius(10px);
+}
+
+.shadow {
+  @include box-shadow(1px 1px 5px rgba(0, 0, 0, 0.05));
+}
+
+.rounded {
+  @include border-radius(100px !important);
+}
+
+.block {
+  border: $default 1px solid;
+  padding: 30px;  
+}
+
+.ms-n3 {
+  margin-left: -3px !important;
+}

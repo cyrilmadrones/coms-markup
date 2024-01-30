@@ -1,0 +1,69 @@
+.k-animation-container {
+
+  .k-notification {
+    font-size: 16px !important;
+    color: #fff;
+    position: fixed;
+    right: 10px;
+    left: 10px;
+    bottom: 10px;
+    z-index: 10050;
+    padding: 20px 30px 20px 60px;
+    display: block;
+    opacity: 1;
+    @include border-radius(10px);
+
+    @include breakpoint($sm) {
+      left: unset;
+      right: 20px;
+      bottom: 20px;
+    }
+
+    .k-icon {
+      width: 30px;
+      height: 27px;
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      /*font-family: 'Font Awesome 5 Free';
+      font-size: 28px;
+      font-weight: $semibold;
+      color: #fff;*/
+      display: inline-block;
+    }
+
+    &.k-notification-error {
+      background-color: $red;
+
+      .k-i-error {
+        @include background-image('../img/icon/icon-error.svg', no-repeat, auto, center left !important);
+        /*&::before {
+          content: "\f057";
+        }*/
+      }
+    }
+
+    &.k-notification-success {
+      background-color: $green;
+
+      .k-i-success {
+        @include background-image('../img/icon/icon-success.svg', no-repeat, auto, center left !important);
+        /*&::before {
+          content: "\f058";
+        }*/
+      }
+    }
+
+    &.k-notification-info {
+      background-color: $blue;
+
+      .k-i-info {
+        @include background-image('../img/icon/icon-info.svg', no-repeat, auto, center left !important);
+        /*&::before {
+          content: "\f05a";
+        }*/
+      }
+    }
+  }
+}
