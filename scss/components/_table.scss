@@ -88,6 +88,17 @@ table.structure {
         font-weight: $bold;
         text-transform: uppercase;
       }
+    }    
+  }
+
+  &.list {
+    tbody {
+      tr {
+        &:hover {
+          background-color: $light-gray1;
+          cursor: pointer;
+        }
+      }
     }
   }
 }
